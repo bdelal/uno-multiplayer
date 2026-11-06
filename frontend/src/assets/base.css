@@ -1,0 +1,19 @@
+:root {
+  --uno-red: #e63946;
+  --uno-blue: #1d7ed8;
+  --uno-green: #2a9d3f;
+  --uno-yellow: #f4a01c;
+  --bg: #1a1a2e;
+  --surface: #16213e;
+  --surface2: #0f3460;
+  --text: #f0f0f0;
+  --text-muted: #9aa3b5;
+  --radius: 14px;
+
+  /* ── Kartenfarben (Game.vue) ── */
+  --card-red:    #e63946;
+  --card-blue:   #1d7ed8;
+  --card-green:  #2a9d3f;
+  --card-yellow: #f4a01c;
+  --card-wish:   #1a1a2e;
+}

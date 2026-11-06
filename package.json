@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@simplewebauthn/server": "^13.3.2",
+    "bcrypt": "^6.0.0",
+    "better-sqlite3": "^12.11.1",
+    "jsonwebtoken": "^9.0.3"
+  },
+  "allowScripts": {
+    "bcrypt@6.0.0": true,
+    "better-sqlite3@12.11.1": true
+  }
+}

@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+  title: UNO Game API
+  description: REST API für das UNO Multiplayer Spiel
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Lokaler Entwicklungsserver
+
+paths:
+  /lobby/create:
+    post:
+      summary: Neue Lobby erstellen
+      operationId: createLobby
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLobbyInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LobbyResponse'
+          description: Lobby erfolgreich erstellt
+
+  /lobby/join/{roomCode}:
+    post:
+      summary: Lobby beitreten
+      operationId: joinLobby
+      parameters:
+        - in: path
+          name: roomCode
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JoinLobbyInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LobbyResponse'
+          description: Erfolgreich beigetreten
+        '404':
+          description: Lobby nicht gefunden
+        '400':
+          description: Lobby voll
+
+components:
+  schemas:
+    CreateLobbyInput:
+      type: object
+      required:
+        - playerName
+        - maxPlayers
+      properties:
+        playerName:
+          type: string
+          example: Berhan
+        maxPlayers:
+          type: integer
+          example: 4
+          minimum: 2
+          maximum: 4
+
+    JoinLobbyInput:
+      type: object
+      required:
+        - playerName
+      properties:
+        playerName:
+          type: string
+          example: Delal
+
+    Player:
+      type: object
+      properties:
+        username:
+          type: string
+        isConnected:
+          type: boolean
+
+    LobbyResponse:
+      type: object
+      properties:
+        roomCode:
+          type: string
+          example: AB12CD
+        status:
+          type: string
+          enum: [waiting, running, finished]
+        players:
+          type: array
+          items:
+            $ref: '#/components/schemas/Player'
